@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Створити персонажа - D&D Character Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">D&D Characters</a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/characters">Персонажі</a>
+        <a href="/logout">Вийти</a>
+      </div>
+    </div>
+  </nav>
+  <main class="character-form-container">
+    <h1>Створити персонажа</h1>
+    <% if (error) { %>
+      <div class="error-message"><%= error %></div>
+    <% } %>
+    <form action="/characters/create" method="POST" class="character-form">
+      <div class="form-section">
+        <h3>Основна інформація</h3>
+        <div class="form-group">
+          <label for="name">Ім'я персонажа:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="race">Раса:</label>
+          <select id="race" name="race" required>
+            <option value="Людина">Людина</option>
+            <option value="Ельф">Ельф</option>
+            <option value="Напіврослий">Напіврослий</option>
+            <option value="Дворф">Дворф</option>
+            <option value="Тифлінг">Тифлінг</option>
+            <option value="Гном">Гном</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="characterClass">Клас:</label>
+          <select id="characterClass" name="characterClass" required>
+            <option value="Воїн">Воїн</option>
+            <option value="Маг">Маг</option>
+            <option value="Жрець">Жрець</option>
+            <option value="Розбійник">Розбійник</option>
+            <option value="Чарівник">Чарівник</option>
+            <option value="Рейнджер">Рейнджер</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="level">Рівень:</label>
+          <input type="number" id="level" name="level" min="1" max="20" value="1">
+        </div>
+        <div class="form-group">
+          <label for="background">Оріджін:</label>
+          <input type="text" id="background" name="background">
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Характеристики</h3>
+        <div class="stats-grid">
+          <div class="form-group">
+            <label for="strength">Сила:</label>
+            <input type="number" id="strength" name="strength" min="1" max="30" value="10">
+          </div>
+          <div class="form-group">
+            <label for="dexterity">Спритність:</label>
+            <input type="number" id="dexterity" name="dexterity" min="1" max="30" value="10">
+          </div>
+          <div class="form-group">
+            <label for="constitution">Статура:</label>
+            <input type="number" id="constitution" name="constitution" min="1" max="30" value="10">
+          </div>
+          <div class="form-group">
+            <label for="intelligence">Інтелект:</label>
+            <input type="number" id="intelligence" name="intelligence" min="1" max="30" value="10">
+          </div>
+          <div class="form-group">
+            <label for="wisdom">Мудрість:</label>
+            <input type="number" id="wisdom" name="wisdom" min="1" max="30" value="10">
+          </div>
+          <div class="form-group">
+            <label for="charisma">Харизма:</label>
+            <input type="number" id="charisma" name="charisma" min="1" max="30" value="10">
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Боєві характеристики</h3>
+        <div class="form-group">
+          <label for="armorClass">Клас броні:</label>
+          <input type="number" id="armorClass" name="armorClass" min="1" max="30" value="10">
+        </div>
+        <div class="form-group">
+          <label for="hitPoints">Хіти:</label>
+          <input type="number" id="hitPoints" name="hitPoints" min="1" value="10">
+        </div>
+        <div class="form-group">
+          <label for="speed">Швидкість:</label>
+          <input type="number" id="speed" name="speed" min="0" value="30">
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Додаткова інформація</h3>
+        <div class="form-group">
+          <label for="abilities">Способності:</label>
+          <textarea id="abilities" name="abilities" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inventory">Інвентар:</label>
+          <textarea id="inventory" name="inventory" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="notes">Замітки:</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Створити</button>
+    </form>
+  </main>
+</body>
+</html>

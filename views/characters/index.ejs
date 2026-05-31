@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мої персонажі - D&D Character Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">D&D Characters</a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/characters/create">Створити</a>
+        <a href="/logout">Вийти</a>
+      </div>
+    </div>
+  </nav>
+  <main class="characters-container">
+    <h1>Мої персонажі</h1>
+    <a href="/characters/create" class="btn btn-primary">+ Новий персонаж</a>
+    <% if (characters.length === 0) { %>
+      <p class="no-characters">Поки що немає персонажів. <a href="/characters/create">Створити персонажа</a></p>
+    <% } else { %>
+      <div class="characters-grid">
+        <% characters.forEach(character => { %>
+          <div class="character-card">
+            <h3><a href="/characters/<%= character._id %>"><%= character.name %></a></h3>
+            <p><%= character.race %> <%= character.characterClass %></p>
+            <p>Рівень: <%= character.level %></p>
+            <div class="card-actions">
+              <a href="/characters/<%= character._id %>/edit" class="btn btn-secondary">Редагувати</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+</body>
+</html>

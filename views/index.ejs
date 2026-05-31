@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D&D Character Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">D&D Characters</a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <% if (user) { %>
+          <a href="/characters">Мої персонажі</a>
+          <a href="/logout">Вийти</a>
+        <% } else { %>
+          <a href="/login">Вхід</a>
+          <a href="/register">Реєстрація</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="hero">
+      <h1>Менеджер персонажів D&D</h1>
+      <p>Створюйте та керуйте своими персонажами для настільних рольових ігор</p>
+      <% if (!user) { %>
+        <a href="/register" class="btn btn-primary">Почати зараз</a>
+      <% } else { %>
+        <a href="/characters" class="btn btn-primary">Мої персонажі</a>
+      <% } %>
+    </section>
+    <section class="features">
+      <div class="feature-card">
+        <h3>Автентифікація</h3>
+        <p>Безпечний вхід та реєстрація</p>
+      </div>
+      <div class="feature-card">
+        <h3>База даних</h3>
+        <p>MongoDB для збереження персонажів</p>
+      </div>
+      <div class="feature-card">
+        <h3>TypeScript</h3>
+        <p>Строга типізація коду</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

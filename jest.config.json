@@ -1,0 +1,11 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "roots": ["<rootDir>"],
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["**/*.test.ts"],
+  "transform": {},
+  "collectCoverageFrom": ["../src/**/*.ts", "!../src/app.ts", "!**/node_modules/**"],
+  "coverageDirectory": "coverage",
+  "coveragePathIgnorePatterns": ["/node_modules/"]
+}

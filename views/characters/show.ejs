@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= character.name %> - D&D Character Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">D&D Characters</a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/characters">Персонажі</a>
+        <a href="/logout">Вийти</a>
+      </div>
+    </div>
+  </nav>
+  <main class="character-show">
+    <h1><%= character.name %></h1>
+    <div class="character-info">
+      <p><strong>Раса:</strong> <%= character.race %></p>
+      <p><strong>Клас:</strong> <%= character.characterClass %></p>
+      <p><strong>Рівень:</strong> <%= character.level %></p>
+      <% if (character.background) { %>
+        <p><strong>Оріджін:</strong> <%= character.background %></p>
+      <% } %>
+    </div>
+    <div class="character-stats">
+      <h2>Характеристики</h2>
+      <table class="stats-table">
+        <tr>
+          <th>Сила</th>
+          <th>Спритність</th>
+          <th>Статура</th>
+          <th>Інтелект</th>
+          <th>Мудрість</th>
+          <th>Харизма</th>
+        </tr>
+        <tr>
+          <td><%= character.stats.strength %></td>
+          <td><%= character.stats.dexterity %></td>
+          <td><%= character.stats.constitution %></td>
+          <td><%= character.stats.intelligence %></td>
+          <td><%= character.stats.wisdom %></td>
+          <td><%= character.stats.charisma %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="character-combat">
+      <h2>Боєві характеристики</h2>
+      <p><strong>Клас броні:</strong> <%= character.armorClass %></p>
+      <p><strong>Хіти:</strong> <%= character.hitPoints %></p>
+      <p><strong>Швидкість:</strong> <%= character.speed %></p>
+    </div>
+    <% if (character.abilities) { %>
+      <div class="character-spells">
+        <h2>Способності</h2>
+        <p><%= character.abilities %></p>
+      </div>
+    <% } %>
+    <% if (character.inventory) { %>
+      <div class="character-inventory">
+        <h2>Інвентар</h2>
+        <p><%= character.inventory %></p>
+      </div>
+    <% } %>
+    <% if (character.notes) { %>
+      <div class="character-notes">
+        <h2>Замітки</h2>
+        <p><%= character.notes %></p>
+      </div>
+    <% } %>
+    <div class="character-actions">
+      <a href="/characters/<%= character._id %>/edit" class="btn btn-secondary">Редагувати</a>
+      <form action="/characters/<%= character._id %>/delete" method="POST" style="display:inline">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Ви впевнені?')">Видалити</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

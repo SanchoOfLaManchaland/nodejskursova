@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редагувати <%= character.name %> - D&D Character Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">D&D Characters</a>
+      <div class="nav-links">
+        <a href="/">Головна</a>
+        <a href="/characters">Персонажі</a>
+        <a href="/logout">Вийти</a>
+      </div>
+    </div>
+  </nav>
+  <main class="character-form-container">
+    <h1>Редагувати персонажа</h1>
+    <% if (error) { %>
+      <div class="error-message"><%= error %></div>
+    <% } %>
+    <form action="/characters/<%= character._id %>/edit" method="POST" class="character-form">
+      <div class="form-section">
+        <h3>Основна інформація</h3>
+        <div class="form-group">
+          <label for="name">Ім'я персонажа:</label>
+          <input type="text" id="name" name="name" value="<%= character.name %>" required>
+        </div>
+        <div class="form-group">
+          <label for="race">Раса:</label>
+          <select id="race" name="race" required>
+            <option value="Людина" <%= character.race === 'Людина' ? 'selected' : '' %>>Людина</option>
+            <option value="Ельф" <%= character.race === 'Ельф' ? 'selected' : '' %>>Ельф</option>
+            <option value="Напіврослий" <%= character.race === 'Напіврослий' ? 'selected' : '' %>>Напіврослий</option>
+            <option value="Дворф" <%= character.race === 'Дворф' ? 'selected' : '' %>>Дворф</option>
+            <option value="Тифлінг" <%= character.race === 'Тифлінг' ? 'selected' : '' %>>Тифлінг</option>
+            <option value="Гном" <%= character.race === 'Гном' ? 'selected' : '' %>>Гном</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="characterClass">Клас:</label>
+          <select id="characterClass" name="characterClass" required>
+            <option value="Воїн" <%= character.characterClass === 'Воїн' ? 'selected' : '' %>>Воїн</option>
+            <option value="Маг" <%= character.characterClass === 'Маг' ? 'selected' : '' %>>Маг</option>
+            <option value="Жрець" <%= character.characterClass === 'Жрець' ? 'selected' : '' %>>Жрець</option>
+            <option value="Розбійник" <%= character.characterClass === 'Розбійник' ? 'selected' : '' %>>Розбійник</option>
+            <option value="Чарівник" <%= character.characterClass === 'Чарівник' ? 'selected' : '' %>>Чарівник</option>
+            <option value="Рейнджер" <%= character.characterClass === 'Рейнджер' ? 'selected' : '' %>>Рейнджер</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="level">Рівень:</label>
+          <input type="number" id="level" name="level" min="1" max="20" value="<%= character.level %>">
+        </div>
+        <div class="form-group">
+          <label for="background">Оріджін:</label>
+          <input type="text" id="background" name="background" value="<%= character.background %>">
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Характеристики</h3>
+        <div class="stats-grid">
+          <div class="form-group">
+            <label for="strength">Сила:</label>
+            <input type="number" id="strength" name="strength" min="1" max="30" value="<%= character.stats.strength %>">
+          </div>
+          <div class="form-group">
+            <label for="dexterity">Спритність:</label>
+            <input type="number" id="dexterity" name="dexterity" min="1" max="30" value="<%= character.stats.dexterity %>">
+          </div>
+          <div class="form-group">
+            <label for="constitution">Статура:</label>
+            <input type="number" id="constitution" name="constitution" min="1" max="30" value="<%= character.stats.constitution %>">
+          </div>
+          <div class="form-group">
+            <label for="intelligence">Інтелект:</label>
+            <input type="number" id="intelligence" name="intelligence" min="1" max="30" value="<%= character.stats.intelligence %>">
+          </div>
+          <div class="form-group">
+            <label for="wisdom">Мудрість:</label>
+            <input type="number" id="wisdom" name="wisdom" min="1" max="30" value="<%= character.stats.wisdom %>">
+          </div>
+          <div class="form-group">
+            <label for="charisma">Харизма:</label>
+            <input type="number" id="charisma" name="charisma" min="1" max="30" value="<%= character.stats.charisma %>">
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Боєві характеристики</h3>
+        <div class="form-group">
+          <label for="armorClass">Клас броні:</label>
+          <input type="number" id="armorClass" name="armorClass" min="1" max="30" value="<%= character.armorClass %>">
+        </div>
+        <div class="form-group">
+          <label for="hitPoints">Хіти:</label>
+          <input type="number" id="hitPoints" name="hitPoints" min="1" value="<%= character.hitPoints %>">
+        </div>
+        <div class="form-group">
+          <label for="speed">Швидкість:</label>
+          <input type="number" id="speed" name="speed" min="0" value="<%= character.speed %>">
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Додаткова інформація</h3>
+        <div class="form-group">
+          <label for="abilities">Способності:</label>
+          <textarea id="abilities" name="abilities" rows="3"><%= character.abilities %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inventory">Інвентар:</label>
+          <textarea id="inventory" name="inventory" rows="3"><%= character.inventory %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="notes">Замітки:</label>
+          <textarea id="notes" name="notes" rows="3"><%= character.notes %></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Зберегти</button>
+    </form>
+  </main>
+</body>
+</html>
